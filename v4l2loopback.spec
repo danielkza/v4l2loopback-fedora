@@ -2,7 +2,7 @@
 
 Name:     v4l2loopback
 Version:  0.9.1
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Tools to create Video4Linux loopback recording devices
 Group:    System Environment/Kernel
 License:  GPLv2
@@ -11,9 +11,7 @@ Source0:  https://github.com/umlaeute/v4l2loopback/archive/v%{version}.tar.gz
 
 BuildArch: noarch
 
-BuildRequires:  gcc
 BuildRequires:  make
-BuildRequires:  kernel-devel
 BuildRequires:  help2man
 
 Requires:       bash
@@ -42,7 +40,9 @@ v4l2loopback kernel module.
 %{_prefix}/lib/dkms/common.postinst %{name} %{version}
 
 %preun dkms
-dkms remove -m %{name} -v %{version} --all --rpm_safe_upgrade || :
+if [ $1 -ne 1 ]; then
+    dkms remove -m %{name} -v %{version} --all --rpm_safe_upgrade || :
+fi
 
 %prep
 %setup -q
@@ -66,6 +66,10 @@ make install-utils install-man DESTDIR="$RPM_BUILD_ROOT" PREFIX=%{_prefix} BINDI
 %{_usrsrc}/%{name}-%{version}
 
 %changelog
-* Wed Jun 22 2016 Daniel Miranda <danielkza2@gmail.com> - 0.9.1
+* Thu Jun 23 2016 Daniel Miranda <danielkza2@gmail.com> - 0.9.1-2
+- Remove unneeded build dependencies 
+- Fix DKMS trigger on package update
+
+* Wed Jun 22 2016 Daniel Miranda <danielkza2@gmail.com> - 0.9.1-1
 - Initial release 
 
