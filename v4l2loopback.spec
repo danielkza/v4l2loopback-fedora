@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:     v4l2loopback
-Version:  0.9.1
-Release:  2%{?dist}
+Version:  0.12.3
+Release:  1%{?dist}
 Summary:  Tools to create Video4Linux loopback recording devices
 Group:    System Environment/Kernel
 License:  GPLv2
@@ -37,7 +37,7 @@ This package contains the module source and DKMS configuration to build thev
 v4l2loopback kernel module.
 
 %post dkms
-%{_prefix}/lib/dkms/common.postinst %{name} %{version}
+%{_prefix}/lib${LIB_SUFFIX}/dkms/common.postinst %{name} %{version}
 
 %preun dkms
 if [ $1 -ne 1 ]; then
@@ -66,6 +66,10 @@ make install-utils install-man DESTDIR="$RPM_BUILD_ROOT" PREFIX=%{_prefix} BINDI
 %{_usrsrc}/%{name}-%{version}
 
 %changelog
+* Fri Mar 27 2020 Chris Suszynski <ksuszyns@redhat.com> - 0.12.3-1
+- Updated upstream version to 0.12.3
+- Tested on Fedora 30 and 31
+
 * Thu Jun 23 2016 Daniel Miranda <danielkza2@gmail.com> - 0.9.1-2
 - Remove unneeded build dependencies 
 - Fix DKMS trigger on package update
