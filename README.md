@@ -3,7 +3,7 @@
 Packager: Daniel Miranda <danielkza2@gmail.com>
 Author: IOhannes m zmölnig <zmoelnig@iem.at> and others
 
-Upstream homepage: hhttps://github.com/umlaeute/v4l2loopback
+Upstream homepage: https://github.com/umlaeute/v4l2loopback
 Packaging repository: https://github.com/danielkza/v4l2loopback-fedora
 COPR repository: https://copr.fedorainfracloud.org/coprs/danielkza/v4l2loopback
 
